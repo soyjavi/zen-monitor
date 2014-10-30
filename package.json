@@ -1,0 +1,21 @@
+{
+  "name"            : "zen.audit",
+  "version"         : "0.10.29",
+  "description"     : "",
+  "homepage"        : "http://soyjavi.com",
+  "author"          : "Javi Jimenez Villar",
+  "dependencies": {},
+  "devDependencies" : {
+    "gulp"        : "*",
+    "gulp-coffee" : "*",
+    "gulp-concat" : "*",
+    "gulp-connect": "*",
+    "gulp-flatten": "*",
+    "gulp-header" : "*",
+    "gulp-stylus" : "*",
+    "gulp-uglify" : "*",
+    "gulp-util"   : "*",
+    "gulp-yml"    : "*"
+  },
+  "engines"         : { "node": "*"}
+}

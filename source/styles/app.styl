@@ -1,0 +1,37 @@
+body
+  margin: 0
+  padding: 0
+  font-family: FONT_FAMILY
+  font-size: 100%
+  background-color: DARK
+
+header
+  height: U
+  padding: 0 SPACE
+  line-height: U
+  color: WHITE
+  background-color: DARK
+
+section
+  .row
+    margin-top: (2 * SPACE)
+    margin-bottom: (2 * SPACE)
+  article
+    min-height: U
+    background-color: darken(BACKGROUND, 10%)
+    background-color: lighten(DARK, 5%)
+    &.column_12
+      height: (6 * U)
+    &.column_4
+      height: (4 * U)
+footer
+  position: fixed
+  bottom: 0px
+  left: 0px
+  width: 100%
+  height: HEIGHT = (U / 2)
+  font-weight: FONT_WEIGHT_THIN
+  font-size: FONT_SIZE_TINY
+  line-height: HEIGHT
+  text-align: center
+  color: darken(BACKGROUND, 25%)
