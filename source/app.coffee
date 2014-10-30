@@ -26,6 +26,7 @@ $ ->
     browsers = {}
     devices = {}
     os = {}
+    urls = {}
     for audit in response
       audit = JSON.parse(audit)
 
@@ -38,6 +39,9 @@ $ ->
       ZEN.count requests, moment(date).format("YYYY/MM/DD HH:mm:ss")
       # Bytes per minute
       ZEN.count bandwitdh, moment(date).format("YYYY/MM/DD HH:mm"), audit.size
+
+      # Endpoints
+      ZEN.count urls, audit.url
 
       # Agent
       if audit.agent
@@ -53,3 +57,6 @@ $ ->
     ZEN.pie "browsers", "Browser", browsers
     ZEN.pie "devices", "Device", devices
     ZEN.pie "os", "OS", os
+
+    ZEN.pie "urls", "URLs", urls
+
