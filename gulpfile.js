@@ -16,8 +16,8 @@ var pkg     = require('./package.json');
 // -- FILES --------------------------------------------------------------------
 var assets = 'www/assets/';
 var source = {
-  coffee: [ 'source/app.coffee',
-            'source/app.*.coffee'],
+  coffee: [ 'source/zen.coffee',
+            'source/zen.*.coffee'],
   styl  : [ 'source/styles/__init.styl',
             'source/styles/vendor.styl',
             'source/styles/reset.styl',
