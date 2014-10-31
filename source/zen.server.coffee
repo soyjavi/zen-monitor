@@ -25,9 +25,9 @@ $ ->
       average.push [utc, process.system.loadavg[0]]
       avgload += process.system.loadavg[0]
 
-    ZEN.value "memory-total", "Mem. TOTAL", parseInt(avgtotal / response.length), "mb"
-    ZEN.value "memory-free", "Mem. FREE", parseInt(avgfree / response.length), "mb"
-    ZEN.value "memory-load", "MEMORY", parseInt(avgload / response.length), "mb"
+    ZEN.value "memory-total", "Memory", "Total", parseInt(avgtotal / response.length), "mb"
+    ZEN.value "memory-free", "Memory", "Free", parseInt(avgfree / response.length), "mb"
+    ZEN.value "memory-load", "Memory", "Average", parseInt(avgload / response.length), "mb"
 
     $("[data-zen=memory]").highcharts
       chart:

@@ -5,6 +5,14 @@ body
   font-size: 100%
   background-color: DARK
 
+  .color
+    &.idx0 strong
+      color: BLUE
+    &.idx1 strong
+      color: GREEN
+    &.idx2 strong
+      color: RED
+
 header
   height: U
   padding: 0 SPACE
@@ -12,36 +20,6 @@ header
   color: WHITE
   background-color: DARK
 
-section
-  .row
-    margin-top: (2 * SPACE)
-    margin-bottom: (2 * SPACE)
-  article
-    min-height: U
-    background-color: darken(BACKGROUND, 10%)
-    background-color: lighten(DARK, 5%)
-    &.column_12
-      height: (6 * U)
-    &.column_10, &.column_8, &.column_6, &.column_4
-      height: (4 * U)
-    &.column_2
-      height: (2 * U)
-      color: WHITE
-      > *
-        margin: (SPACE / 2)
-        display: block
-        text-align: center
-        line-height: 100%
-      label
-        font-size: 20px
-      h1
-        font-size: U
-      small
-        opacity: 0.25
-
-
-    &:hover
-      cursor: pointer
 footer
   position: fixed
   bottom: 0px
