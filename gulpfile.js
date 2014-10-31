@@ -27,6 +27,7 @@ var source = {
 var dependencies = {
     js   :[ 'bower_components/jquery/dist/jquery.min.js',
             'bower_components/hope/hope.js',
+            'bower_components/gridster/dist/jquery.gridster.min.js',
             'bower_components/moment/min/moment.min.js',
             'bower_components/highcharts/highcharts.js',
             // 'bower_components/highcharts/modules/canvas-tools.js',
@@ -40,7 +41,8 @@ var dependencies = {
             'bower_components/highcharts/themes/dark-unica.js',
             'bower_components/ua-parser-js/src/ua-parser.js'
           ],
-    css  :[ 'bower_components/tuktuk/tuktuk.grid.css']};
+    css  :[ 'bower_components/tuktuk/tuktuk.grid.css',
+            'bower_components/gridster/dist/jquery.gridster.min.css']};
 
 var banner = ['/**',
   ' * <%= pkg.name %> - <%= pkg.description %>',

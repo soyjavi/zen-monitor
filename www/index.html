@@ -18,30 +18,31 @@
         <link rel="stylesheet" href="assets/css/zen.audit.css">
     </head>
     <body data-atoms="app">
-        <header>ZEN.audit</header>
-        <section>
-            <div class="row">
-              <article class="column_8" data-zen="memory"></article>
-              <article class="column_2" data-zen="memory-total"></article>
-              <article class="column_2" data-zen="memory-free"></article>
-              <article class="column_2" data-zen="memory-load"></article>
-            </div>
-            <div class="row">
-              <article class="column_2" data-zen="request-latence"></article>
-              <article class="column_8" data-zen="request"></article>
-              <article class="column_2" data-zen="request-requests"></article>
-              <article class="column_2" data-zen="request-bandwidth"></article>
-            </div>
-            <div class="row">
-              <article class="column_4" data-zen="browsers"></article>
-              <article class="column_4" data-zen="devices"></article>
-              <article class="column_4" data-zen="os"></article>
-            </div>
-            <div class="row">
-              <article class="column_12" data-zen="urls"></article>
-            </div>
+          <header>ZEN.audit</header>
 
-        </section>
+          <div class="gridster">
+            <ul>
+                <li data-row="1" data-col="1" data-sizex="6" data-sizey="2" data-zen="memory"></li>
+                <li data-row="1" data-col="7" data-sizex="1" data-sizey="1" data-zen="memory-total" class="color idx0"></li>
+                <li data-row="1" data-col="8" data-sizex="1" data-sizey="1" data-zen="memory-free" class="color idx1"></li>
+                <li data-row="2" data-col="7" data-sizex="1" data-sizey="1" data-zen="memory-load" class="color idx2"></li>
+                <li data-row="2" data-col="8" data-sizex="1" data-sizey="1"></li>
+
+                <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-latence" class="color idx0"></li>
+                <li data-row="3" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-requests" class="color idx1"></li>
+                <li data-row="4" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-bandwidth" class="color idx2"></li>
+                <li data-row="4" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-users"></li>
+                <li data-row="3" data-col="3" data-sizex="6" data-sizey="2" data-zen="request"></li>
+
+                <li data-row="6" data-col="1" data-sizex="2" data-sizey="2" data-zen="methods"></li>
+                <li data-row="6" data-col="3" data-sizex="2" data-sizey="2" data-zen="codes"></li>
+                <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="browsers"></li>
+                <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="devices"></li>
+                <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="os"></li>
+                <li data-row="6" data-col="5" data-sizex="6" data-sizey="2" data-zen="urls"></li>
+            </ul>
+        </div>
+
         <footer>Handcrafted with ♥ by Tapquo, S.L.</footer>
 
         <script src="assets/js/zen.audit.dependencies.js"></script>
