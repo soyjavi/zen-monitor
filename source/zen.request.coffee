@@ -2,7 +2,6 @@
 
 $ ->
   ZEN.proxy("GET", "#{ZEN.url}/request/#{ZEN.date}").then (error, response) ->
-    # console.log "REQUESTS", response.length
     latence = []
     requests = {}
     bandWidth = {}
@@ -66,10 +65,8 @@ $ ->
         type    : 'spline'
         zoomType: 'x'
       title: text: "Requests"
-      subtitle: text: ZEN.url
       xAxis:
         type: 'datetime'
-        # minRange: 1 * 3600000  # 2 hour
         title: enabled: false, text: 'Date'
       yAxis: [
         title: enabled: false
@@ -111,15 +108,12 @@ $ ->
       series: [
         type: 'spline'
         name: 'Latence'
-        # pointInterval: 24 * 3600 * 1000
         data: latence
         tooltip: valueSuffix: ' ms'
         yAxis: 0
       ,
         type: 'spline'
         name: 'Requests'
-        # dashStyle: 'shortdot'
-        # pointInterval: 24 * 3600 * 1000
         data: ZEN.utc requests
         tooltip: valueSuffix: '/sec'
         marker: enabled: false
