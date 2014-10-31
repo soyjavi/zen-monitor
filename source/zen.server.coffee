@@ -4,10 +4,13 @@ $ ->
 
   ZEN.proxy("GET", "#{ZEN.url}/server/#{ZEN.date}").then (error, response) ->
 
-    memtotal = []
-    freemem = []
-    loadavg = []
+    total = []
+    free = []
+    average = []
 
+    avgtotal = 0
+    avgfree = 0
+    avgload = 0
 
     for process in response
       process = JSON.parse(process)
@@ -15,18 +18,22 @@ $ ->
       date = new Date(process.at)
       utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds())
 
-      console.log process.system
-      memtotal.push [utc, process.memtotal]
-      freemem.push [utc, process.system.freemem]
-      loadavg.push [utc, process.system.loadavg[0]]
+      total.push [utc, process.memtotal]
+      avgtotal += process.memtotal
+      free.push [utc, process.system.freemem]
+      avgfree += process.system.freemem
+      average.push [utc, process.system.loadavg[0]]
+      avgload += process.system.loadavg[0]
 
+    ZEN.value "memory-total", "Mem. TOTAL", parseInt(avgtotal / response.length), "mb"
+    ZEN.value "memory-free", "Mem. FREE", parseInt(avgfree / response.length), "mb"
+    ZEN.value "memory-load", "MEMORY", parseInt(avgload / response.length), "mb"
 
-    $("[data-zen=server]").highcharts
+    $("[data-zen=memory]").highcharts
       chart:
         type    : 'spline'
         zoomType: 'x'
-      title: text: "INSTANCE"
-      subtitle: text: ZEN.url
+      title: text: "Memory"
       xAxis:
         type: 'datetime'
         title: enabled: false, text: 'Date'
@@ -38,7 +45,6 @@ $ ->
           style: color: Highcharts.getOptions().colors[0]
       ,
         title: enabled: false
-        opposite: true
         min: 0
         labels:
           format: '{value}mb'
@@ -51,37 +57,26 @@ $ ->
           format: '{value}%'
           style: color: Highcharts.getOptions().colors[2]
       ]
-      legend: enabled: true
       plotOptions:
         spline:
           lineWidth : 1
           states    : hover: lineWidth: 2
           marker    : enabled: false
-        column:
-          pointPadding: 0.2
-          borderWidth: 0
-        area:
-          lineWidth: 1
-          states: hover: lineWidth: 1
-          threshold: null
       series: [
-        type: 'spline'
-        name: 'Memory Total'
-        data: memtotal
+        name: 'Total'
+        data: total
         tooltip: valueSuffix: ' mb'
         yAxis: 0
       ,
-        type: 'spline'
-        name: 'Free Memory'
-        data: freemem
+        name: 'Free'
+        data: free
         tooltip: valueSuffix: ' mb'
         marker: enabled: false
         yAxis: 1
 
       ,
-        type: 'spline'
         name: 'Load Average'
-        data: loadavg
+        data: average
         tooltip: valueSuffix: '%'
         marker: enabled: false
         yAxis: 2
