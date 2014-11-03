@@ -55,10 +55,12 @@ header
       color: BACKGROUND
       font-size: FONT_SIZE_TINY
       font-weight: FONT_WEIGHT_THIN
-      &:nth-child(1), &:nth-child(3)
-        width: (1.5 * U)
+      &:nth-child(1)
+        width: (2 * U)
       &:nth-child(2)
         width: (U / 1.25)
+      &:nth-child(3)
+        width: (1.5 * U)
     > button
       font-size: FONT_SIZE_SMALL
       font-weight: FONT_WEIGHT_BOLD
@@ -78,6 +80,9 @@ footer
   color: darken(BACKGROUND, 25%)
   background-color: rgba(0,0,0,0.1)
 
+
+  .color.red
+    font-size: FONT_SIZE_NORMAL
   a
     color: WHITE
     text-decoration: none
