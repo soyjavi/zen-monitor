@@ -23,16 +23,24 @@ $ ->
       average.push [utc, process.system.loadavg[0]]
       avgload += process.system.loadavg[0]
 
-    ZEN.value "memory-total", "Memory", "Total", parseInt(avgtotal / response.length), "mb"
-    ZEN.value "memory-free", "Memory", "Free", parseInt(avgfree / response.length), "mb"
-    ZEN.value "memory-load", "Memory", "Average", parseInt(avgload / response.length), "mb"
-    ZEN.value "memory-uptime", "Uptime", "Instance", "?", "mb"
+    ZEN.value "instance-total", "Memory", "Total", parseInt(avgtotal / response.length), "mb"
+    ZEN.value "instance-free", "Memory", "Free", parseInt(avgfree / response.length), "mb"
+    ZEN.value "instance-load", "Memory", "Average", parseInt(avgload / response.length), "mb"
+    uptime = parseInt process.uptime / 60
+    unit = "minutes"
+    if uptime >= 60
+      uptime = uptime / 60
+      unit = "hours"
+    if uptime >= 60
+      uptime = uptime / 24
+      unit = "days"
+    ZEN.value "instance-uptime", "Uptime", "Instance", uptime, unit
 
-    $("[data-zen=memory]").highcharts
+    $("[data-zen=instance]").highcharts
       chart:
         type    : 'spline'
         zoomType: 'x'
-      title: text: "Memory"
+      title: text: "Instance"
       xAxis:
         type: 'datetime'
         title: enabled: false, text: 'Date'
