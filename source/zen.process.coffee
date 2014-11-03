@@ -1,9 +1,7 @@
 "use strict"
 
 $ ->
-
   ZEN.proxy("GET", "#{ZEN.url}/server/#{ZEN.date}").then (error, response) ->
-
     total = []
     free = []
     average = []
@@ -28,6 +26,7 @@ $ ->
     ZEN.value "memory-total", "Memory", "Total", parseInt(avgtotal / response.length), "mb"
     ZEN.value "memory-free", "Memory", "Free", parseInt(avgfree / response.length), "mb"
     ZEN.value "memory-load", "Memory", "Average", parseInt(avgload / response.length), "mb"
+    ZEN.value "memory-uptime", "Uptime", "Instance", "?", "mb"
 
     $("[data-zen=memory]").highcharts
       chart:

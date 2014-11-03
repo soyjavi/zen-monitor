@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>ZEN.audit</title>
+        <title>ZEN.monitor</title>
         <meta name="description" content="{{description}}">
         <meta name="author" content="{{author}}">
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
@@ -18,7 +18,15 @@
         <link rel="stylesheet" href="assets/css/zen.audit.css">
     </head>
     <body data-atoms="app">
-          <header>ZEN.audit</header>
+          <header>
+            <h1 class="logo"><span class="color theme">ZEN</span>.monitor</h1>
+            <form>
+              <input type="text" placeholder="IP or address" />
+              <input type="number" placeholder="Port" maxlength="5"/>
+              <input type="password" placeholder="Password" />
+              <button>START</button>
+            </form>
+          </header>
 
           <div class="gridster">
             <ul>
@@ -26,7 +34,7 @@
                 <li data-row="1" data-col="7" data-sizex="1" data-sizey="1" data-zen="memory-total" class="color idx0"></li>
                 <li data-row="1" data-col="8" data-sizex="1" data-sizey="1" data-zen="memory-free" class="color idx1"></li>
                 <li data-row="2" data-col="7" data-sizex="1" data-sizey="1" data-zen="memory-load" class="color idx2"></li>
-                <li data-row="2" data-col="8" data-sizex="1" data-sizey="1"></li>
+                <li data-row="2" data-col="8" data-sizex="1" data-sizey="1" data-zen="memory-uptime"></li>
 
                 <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-latence" class="color idx0"></li>
                 <li data-row="3" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-requests" class="color idx1"></li>
