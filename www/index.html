@@ -18,42 +18,45 @@
         <link rel="stylesheet" href="assets/css/zen.audit.css">
     </head>
     <body data-atoms="app">
-          <header>
-            <h1 class="logo"><span class="color theme">ZEN</span>.monitor</h1>
-            <form>
-              <input type="text" placeholder="IP or address" />
-              <input type="number" placeholder="Port" maxlength="5"/>
-              <input type="password" placeholder="Password" />
-              <button>START</button>
-            </form>
-          </header>
+        <header>
+          <h1 class="logo"><span class="color theme">ZEN</span>.monitor</h1>
+          <form>
+            <input type="text" placeholder="IP or address" required />
+            <input type="number" placeholder="Port" maxlength="5" required/>
+            <input type="password" placeholder="Password" required/>
+            <input type="date" required/>
+            <button>START</button>
+          </form>
+        </header>
 
-          <div class="gridster">
-            <ul>
-                <li data-row="1" data-col="1" data-sizex="6" data-sizey="2" data-zen="instance"></li>
-                <li data-row="1" data-col="7" data-sizex="1" data-sizey="1" data-zen="instance-total" class="color idx0"></li>
-                <li data-row="1" data-col="8" data-sizex="1" data-sizey="1" data-zen="instance-free" class="color idx1"></li>
-                <li data-row="2" data-col="7" data-sizex="1" data-sizey="1" data-zen="instance-load" class="color idx2"></li>
-                <li data-row="2" data-col="8" data-sizex="1" data-sizey="1" data-zen="instance-uptime"></li>
+        <div class="gridster">
+          <ul>
+              <li data-row="1" data-col="1" data-sizex="6" data-sizey="2" data-zen="instance"></li>
+              <li data-row="1" data-col="7" data-sizex="1" data-sizey="1" data-zen="instance-total" class="color idx0"></li>
+              <li data-row="1" data-col="8" data-sizex="1" data-sizey="1" data-zen="instance-free" class="color idx1"></li>
+              <li data-row="2" data-col="7" data-sizex="1" data-sizey="1" data-zen="instance-load" class="color idx2"></li>
+              <li data-row="2" data-col="8" data-sizex="1" data-sizey="1" data-zen="instance-uptime"></li>
 
-                <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-latence" class="color idx0"></li>
-                <li data-row="3" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-requests" class="color idx1"></li>
-                <li data-row="4" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-bandwidth" class="color idx2"></li>
-                <li data-row="4" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-users"></li>
-                <li data-row="3" data-col="3" data-sizex="6" data-sizey="2" data-zen="request"></li>
+              <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-latence" class="color idx0"></li>
+              <li data-row="3" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-requests" class="color idx1"></li>
+              <li data-row="4" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-bandwidth" class="color idx2"></li>
+              <li data-row="4" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-users"></li>
+              <li data-row="3" data-col="3" data-sizex="6" data-sizey="2" data-zen="request"></li>
 
-                <li data-row="6" data-col="1" data-sizex="2" data-sizey="2" data-zen="methods"></li>
-                <li data-row="6" data-col="3" data-sizex="2" data-sizey="2" data-zen="codes"></li>
-                <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="browsers"></li>
-                <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="devices"></li>
-                <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="os"></li>
-                <li data-row="6" data-col="5" data-sizex="6" data-sizey="2" data-zen="urls"></li>
-            </ul>
-        </div>
+              <li data-row="6" data-col="1" data-sizex="2" data-sizey="2" data-zen="methods"></li>
+              <li data-row="6" data-col="3" data-sizex="2" data-sizey="2" data-zen="codes"></li>
+              <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="browsers"></li>
+              <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="devices"></li>
+              <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="os"></li>
+              <li data-row="6" data-col="5" data-sizex="6" data-sizey="2" data-zen="urls"></li>
+          </ul>
+      </div>
 
-        <footer>Handcrafted with ♥ by Tapquo, S.L.</footer>
+      <footer>
+        Handcrafted with <span class="color red">♥</span> by <a href="http://soyjavi.com" target="_blank">SOYJAVI</a> for <a href="http://tapquo.com" target="_blank">Tapquo, S.L</a>.
+      </footer>
 
-        <script src="assets/js/zen.audit.dependencies.js"></script>
-        <script src="assets/js/zen.audit.js"></script>
+      <script src="assets/js/zen.audit.dependencies.js"></script>
+      <script src="assets/js/zen.audit.js"></script>
     </body>
 </html>

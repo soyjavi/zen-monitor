@@ -1,6 +1,6 @@
 body
   margin: 0
-  padding: 0
+  padding: 0 0 (U / 2) 0
   font-family: FONT_FAMILY
   font-size: 100%
   background-color: DARK
@@ -12,14 +12,22 @@ body
       color: GREEN
     &.idx2 strong
       color: RED
+    &.red
+      color: RED
+    &.blue
+      color: BLUE
 
 header
+  position: fixed
+  z-index: 1980
+  top: 0
+  width: 100%
   height: U
   line-height: U
   padding: 0 SPACE
   line-height: U
   color: WHITE
-  background-color: DARK
+  background-color: rgba(0,0,0,0.1)
   > *
     display: inline-block
     vertical-align: middle
@@ -58,6 +66,7 @@ header
       color: WHITE
 footer
   position: fixed
+  z-index: 1980
   bottom: 0px
   left: 0px
   width: 100%
@@ -67,3 +76,12 @@ footer
   line-height: HEIGHT
   text-align: center
   color: darken(BACKGROUND, 25%)
+  background-color: rgba(0,0,0,0.1)
+
+  a
+    color: WHITE
+    text-decoration: none
+    &:nth-child(2):hover
+      color: GREEN
+    &:nth-child(3):hover
+      color: BLUE
