@@ -31,8 +31,8 @@ ZEN.request = do ->
         # Number of requests per second
         ZEN.count requests, moment(date).format("YYYY/MM/DD HH:mm:ss")
         # Bytes per minute
-        ZEN.count bandWidth, moment(date).format("YYYY/MM/DD HH:mm"), request.size
-        sum.bandwidth += request.size
+        ZEN.count bandWidth, moment(date).format("YYYY/MM/DD HH:mm"), (request.size / 1024)
+        sum.bandwidth += (request.size / 1024)
         # Endpoints
         ZEN.count urls, request.url
         # Types
@@ -59,7 +59,7 @@ ZEN.request = do ->
       # Averages
       ZEN.chart.value "request-latence", "Requests", "Latence", parseInt(sum.latence / response.length), "ms"
       ZEN.chart.value "request-requests", "Requests", "Total", response.length
-      ZEN.chart.value "request-bandwidth", "Requests", "Bandwidth", parseInt(sum.bandwidth / 1024 / 1024), "mb"
+      ZEN.chart.value "request-bandwidth", "Requests", "Bandwidth", parseInt(sum.bandwidth / 1024), "mb"
       ZEN.chart.value "request-users", "Requests", "Users", Object.keys(uniques).length, "uniques"
       # Requests
       $("[data-zen=request]").highcharts
@@ -88,6 +88,7 @@ ZEN.request = do ->
           opposite: true
           min: 0
           labels:
+            format: '{value} kb'
             style: color: Highcharts.getOptions().colors[2]
         ]
         legend: enabled: true
@@ -120,7 +121,7 @@ ZEN.request = do ->
           type: 'column'
           name: 'bandwidth'
           data: ZEN.utc bandWidth
-          tooltip: valueSuffix: ' bytes/min'
+          tooltip: valueSuffix: ' kb/min', valueDecimals: 0
           marker: enabled: false
           yAxis: 2
         ]

@@ -74,19 +74,19 @@ ZEN.process = do ->
         series: [
           name: 'Total'
           data: total
-          tooltip: valueSuffix: ' mb'
+          tooltip: valueSuffix: ' mb', valueDecimals: 2
           yAxis: 0
         ,
           name: 'Free'
           data: free
-          tooltip: valueSuffix: ' mb'
+          tooltip: valueSuffix: ' mb', valueDecimals: 2
           marker: enabled: false
           yAxis: 1
 
         ,
           name: 'Load Average'
           data: average
-          tooltip: valueSuffix: '%'
+          tooltip: valueSuffix: '%', valueDecimals: 2
           marker: enabled: false
           yAxis: 2
         ]
