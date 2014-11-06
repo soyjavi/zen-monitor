@@ -11,7 +11,7 @@ $ ->
     draggable: handle: 'header'
 
   $("input[name=date]").val moment().format("YYYY-MM-DD")
-  $("header > form > button").on "click", (event) ->
+  $("header > form > button.connect").on "click", (event) ->
     event.preventDefault()
     event.stopPropagation()
     ZEN.instance =
@@ -21,5 +21,10 @@ $ ->
       date      : moment($("input[name=date]").val()).format("YYYYMMDD")
 
     if ZEN.instance.host and ZEN.instance.password and ZEN.instance.date
+      $(document.body).removeClass "landing"
       ZEN.process.get()
       ZEN.request.get()
+  $("header > form > button.connect").on "click", (event) ->
+    event.preventDefault()
+    event.stopPropagation()
+      $(document.body).addClass "landing"

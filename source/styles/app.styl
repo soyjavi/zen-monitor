@@ -30,14 +30,16 @@ header
   padding: 0 SPACE
   line-height: U
   color: WHITE
+  transition all ANIMATION_DURATION
   > *
     display: inline-block
     vertical-align: middle
     margin: 0
+    transition all ANIMATION_DURATION
   > .logo
     color: lighten(DARK, 25%)
     > .color
-      color: WHITE
+      color: THEME
       font-weight: FONT_WEIGHT_BOLD
   > form
     margin-left: SPACE
@@ -68,6 +70,13 @@ header
       font-weight: FONT_WEIGHT_BOLD
       background-color: lighten(DARK, 20%)
       color: WHITE
+      transition background ANIMATION_DURATION
+      cursor: pointer
+      &.connect
+        display: none
+      &:hover
+        background-color: THEME
+
 footer
   position: fixed
   z-index: 1980

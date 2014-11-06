@@ -1,0 +1,35 @@
+body.landing
+
+  header
+    top: 50%
+    height: SIZE = (3 * U)
+    margin-top: -((SIZE +  SPACE) / 2)
+    text-align: center
+    padding: SPACE
+    background-color: darken(DARK, 10%)
+    > *
+      display: block
+    > .logo
+      margin: (U / 4) 0
+      font-size: U
+    > form
+      margin: 0
+      text-align: center
+      > *
+        height: U
+        font-size: (U / 2)
+      > input
+        &:nth-child(1)
+          width: 25%
+        &:nth-child(2)
+          width: 7.5%
+        &:nth-child(3)
+          width: 10%
+    .disconnect, input[type=date]
+      display: none
+    .connect
+      display: inline
+  .gridster
+    opacity: 0.5
+    li
+      background-color: darken(DARK, 2.5%)
