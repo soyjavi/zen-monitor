@@ -5,6 +5,11 @@ window.ZEN = ZEN = do ->
   _count = (object, key, value = 1) ->
     object[key] = if object[key] then (object[key] + value) else value
 
+  _parseOS = (os) ->
+    parse = os.name
+    parse += " " + os.version.split(".", 2).join(".") if os.version
+    parse
+
   _proxy = (type, method, parameters = {}, background = false) ->
     promise = new Hope.Promise()
     # unless background then do __.Dialog.Loading.show
@@ -12,8 +17,8 @@ window.ZEN = ZEN = do ->
       url         : "#{method}"
       type        : type
       data        : parameters
-      # contentType : "application/x-www-form-urlencoded"
       dataType    : 'json'
+      headers     : authorization: "jajajaja"
       success: (response, xhr) ->
         # unless background then do __.Dialog.Loading.hide
         promise.done null, response
@@ -27,7 +32,7 @@ window.ZEN = ZEN = do ->
   _url = ->
     url = "#{ZEN.instance.host}"
     url += ":#{ZEN.intance.port}" if ZEN.instance.port
-    url += "/monitor/#{ZEN.instance.password}/"
+    url += "/monitor/#{ZEN.instance.password}"
 
   _utc = (object) ->
     values = []
@@ -43,26 +48,7 @@ window.ZEN = ZEN = do ->
   url     : _url
   date    : moment().format("YYYYMMDD")
   count   : _count
+  parseOS : _parseOS
   proxy   : _proxy
   utc     : _utc
   ua      : new UAParser()
-
-$ ->
-  $(".gridster ul").gridster
-    widget_margins        : [10, 10]
-    widget_base_dimensions: [140, 140]
-    draggable: handle: 'header'
-
-  $("input[name=date]").val moment().format("YYYY-MM-DD")
-  $("header > form > button").on "click", (event) ->
-    event.preventDefault()
-    event.stopPropagation()
-    ZEN.instance =
-      host      : $("input[name=host]").val()
-      port      : $("input[name=port]").val()
-      password  : $("input[name=password]").val()
-      date      : moment($("input[name=date]").val()).format("YYYYMMDD")
-
-    if ZEN.instance.host and ZEN.instance.password and ZEN.instance.date
-      ZEN.process.get()
-      ZEN.request.get()

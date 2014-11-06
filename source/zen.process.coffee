@@ -3,14 +3,14 @@
 ZEN.process = do ->
 
   _get = ->
+    do _values
+    _interval = setInterval _values, 300000
+
+  _values = ->
     ZEN.proxy("GET", "#{ZEN.url()}/server/#{ZEN.instance.date}").then (error, response) ->
       total = []
       free = []
       average = []
-
-      avgtotal = 0
-      avgfree = 0
-      avgload = 0
 
       for process in response
         process = JSON.parse(process)
@@ -18,15 +18,12 @@ ZEN.process = do ->
         utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds())
 
         total.push [utc, process.memtotal]
-        avgtotal += process.memtotal
         free.push [utc, process.system.freemem]
-        avgfree += process.system.freemem
         average.push [utc, process.system.loadavg[0]]
-        avgload += process.system.loadavg[0]
 
-      ZEN.chart.value "instance-total", "Memory", "Total", parseInt(avgtotal / response.length), "mb"
-      ZEN.chart.value "instance-free", "Memory", "Free", parseInt(avgfree / response.length), "mb"
-      ZEN.chart.value "instance-load", "Memory", "Average", parseInt(avgload / response.length), "mb"
+      ZEN.chart.value "instance-total", "Memory", "Total", parseInt(process.memtotal), "mb"
+      ZEN.chart.value "instance-free", "Memory", "Free", parseInt(process.system.freemem), "mb"
+      ZEN.chart.value "instance-load", "Memory", "Average", process.system.loadavg[0].toFixed(2), "%"
 
       uptime = parseInt process.uptime / 60
       unit = "minutes"

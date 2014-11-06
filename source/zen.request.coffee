@@ -2,19 +2,30 @@
 
 ZEN.request = do ->
 
+  _interval = undefined
+
   _get = ->
+    do _values
+    # _interval = setInterval _values, 60000
+
+
+  _values = ->
     ZEN.proxy("GET", "#{ZEN.url()}/request/#{ZEN.instance.date}").then (error, response) ->
-      latence = []
-      requests = {}
-      bandWidth = {}
-      agents = {}
-      browsers = {}
-      devices = {}
-      os = {}
-      urls = {}
-      methods = {}
-      codes = {}
-      uniques = {}
+      total =
+        latence   : []
+        requests  : {}
+        bandWidth : {}
+        agents    : {}
+        browsers  : {}
+        devices   : {}
+        os        : {}
+        url_ok    : {}
+        url_error : {}
+        url_403   : {}
+        methods   : {}
+        codes     : {}
+        uniques   : {}
+        types     : {}
 
       sum =
         latence   : 0
@@ -26,41 +37,58 @@ ZEN.request = do ->
         # Latence
         date = new Date(request.at)
         utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds())
-        latence.push [utc, request.ms]
+        total.latence.push [utc, request.ms]
         sum.latence += request.ms
         # Number of requests per second
-        ZEN.count requests, moment(date).format("YYYY/MM/DD HH:mm:ss")
+        ZEN.count total.requests, moment(date).format("YYYY/MM/DD HH:mm:ss")
         # Bytes per minute
-        ZEN.count bandWidth, moment(date).format("YYYY/MM/DD HH:mm"), (request.size / 1024)
+        ZEN.count total.bandWidth, moment(date).format("YYYY/MM/DD HH:mm"), (request.size / 1024)
         sum.bandwidth += (request.size / 1024)
         # Endpoints
-        ZEN.count urls, request.url
+        if request.code < 300
+          ZEN.count total.url_ok, request.url
+        if request.code >= 400
+          unless request.code is 403
+            ZEN.count total.url_error, request.url
+          else
+            ZEN.count total.url_403, request.url
+
         # Types
-        ZEN.count methods, request.method
+        ZEN.count total.types, request.type.split("/")[1] if request.type?
+        # Methods
+        ZEN.count total.methods, request.method
         # codes
-        ZEN.count codes, request.code
+        ZEN.count total.codes, request.code
         # Agent
         if request.agent
           ua = ZEN.ua.setUA(request.agent).getResult()
-          ZEN.count browsers, ua.browser.name
-          ZEN.count devices, ua.device.type
-          ZEN.count os, (if ua.os.version then "#{ua.os.name} #{ua.os.version}" else ua.os.name)
+          ZEN.count total.browsers, ua.browser.name
+          ZEN.count total.devices, ua.device.type
+          ZEN.count total.os, ZEN.parseOS ua.os
           #Uniques users
-          ZEN.count uniques, "#{request.ip}|#{request.agent}}"
+          ZEN.count total.uniques, "#{request.ip}|#{request.agent}}"
 
       # Agents
-      ZEN.chart.pie "browsers", "Browser", browsers
-      ZEN.chart.pie "devices", "Device", devices
-      ZEN.chart.pie "os", "OS", os
-      ZEN.chart.pie "urls", "URLs", urls
-      # Agents
-      ZEN.chart.pie "methods", "METHODS", methods
-      ZEN.chart.pie "codes", "CODES", codes
+      ZEN.chart.pie "browsers", "Browser", total.browsers
+      total.devices.laptop = total.devices["undefined"]
+      delete total.devices["undefined"]
+      ZEN.chart.pie "devices", "DEVICE", total.devices
+      ZEN.chart.pie "os", "OS", total.os
+      # Responses
+      ZEN.chart.pie "url_ok", "SUCCESS", total.url_ok
+      ZEN.chart.pie "url_error", "ERROR", total.url_error
+      ZEN.chart.pie "methods", "METHODS", total.methods
+      ZEN.chart.pie "codes", "CODES", total.codes
+      ZEN.chart.pie "url_403", "403", total.url_403
+      delete total.types["undefined"]
+      ZEN.chart.pie "mime", "MIME-TYPE", total.types
+
       # Averages
       ZEN.chart.value "request-latence", "Requests", "Latence", parseInt(sum.latence / response.length), "ms"
       ZEN.chart.value "request-requests", "Requests", "Total", response.length
       ZEN.chart.value "request-bandwidth", "Requests", "Bandwidth", parseInt(sum.bandwidth / 1024), "mb"
-      ZEN.chart.value "request-users", "Requests", "Users", Object.keys(uniques).length, "uniques"
+      ZEN.chart.value "request-users", "Requests", "Users", Object.keys(total.uniques).length, "uniques"
+
       # Requests
       $("[data-zen=request]").highcharts
         chart:
@@ -100,27 +128,23 @@ ZEN.request = do ->
           column:
             pointPadding: 0.2
             borderWidth: 0
-        # tooltip:
-        #   # headerFormat: '<b>{series.name}</b><br>',
-        #   headerFormat: '<b>http://</b><br>'
-        #   pointFormat: '{point.x:%e. %b}: {point.y:.0f}ms'
         series: [
           type: 'spline'
           name: 'Latence'
-          data: latence
+          data: total.latence
           tooltip: valueSuffix: ' ms'
           yAxis: 0
         ,
           type: 'spline'
           name: 'Requests'
-          data: ZEN.utc requests
+          data: ZEN.utc total.requests
           tooltip: valueSuffix: '/sec'
           marker: enabled: false
           yAxis: 1
         ,
           type: 'column'
           name: 'bandwidth'
-          data: ZEN.utc bandWidth
+          data: ZEN.utc total.bandWidth
           tooltip: valueSuffix: ' kb/min', valueDecimals: 0
           marker: enabled: false
           yAxis: 2

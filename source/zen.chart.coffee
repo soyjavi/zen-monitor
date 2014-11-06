@@ -11,7 +11,7 @@ ZEN.chart = do ->
         text          : title
         align         : 'center'
         verticalAlign : 'middle'
-        y             : 20
+        y             : 26
       tooltip: pointFormat: "<b>{point.percentage:.1f}%</b>"
       plotOptions:
         pie:

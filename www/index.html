@@ -21,8 +21,8 @@
         <header>
           <h1 class="logo"><span class="color theme">ZEN</span>.monitor</h1>
           <form>
-            <input type="text" name="host" placeholder="IP or address" value="http://" required />
-            <input type="number" name="port" placeholder="Port" maxlength="5" value="" required/>
+            <input type="text" name="host" placeholder="IP or address" value="http://appnima.com" required />
+            <input type="number" name="port" placeholder="Port" maxlength="5" value="" />
             <input type="password" name="password" placeholder="Password" value="as09dasdjKalsd9" required/>
             <input type="date" name="date" required/>
             <button>START</button>
@@ -32,24 +32,30 @@
 
         <div class="gridster">
           <ul>
+              <!-- INSTANCE -->
               <li data-row="1" data-col="1" data-sizex="6" data-sizey="2" data-zen="instance"></li>
               <li data-row="1" data-col="7" data-sizex="1" data-sizey="1" data-zen="instance-total" class="color idx0"></li>
               <li data-row="1" data-col="8" data-sizex="1" data-sizey="1" data-zen="instance-free" class="color idx1"></li>
               <li data-row="2" data-col="7" data-sizex="1" data-sizey="1" data-zen="instance-load" class="color idx2"></li>
               <li data-row="2" data-col="8" data-sizex="1" data-sizey="1" data-zen="instance-uptime"></li>
-
+              <!-- REQUEST -->
               <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-latence" class="color idx0"></li>
               <li data-row="3" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-requests" class="color idx1"></li>
               <li data-row="4" data-col="1" data-sizex="1" data-sizey="1" data-zen="request-bandwidth" class="color idx2"></li>
               <li data-row="4" data-col="2" data-sizex="1" data-sizey="1" data-zen="request-users"></li>
               <li data-row="3" data-col="3" data-sizex="6" data-sizey="2" data-zen="request"></li>
-
+              <!-- RESPONSE -->
               <li data-row="6" data-col="1" data-sizex="2" data-sizey="2" data-zen="methods"></li>
               <li data-row="6" data-col="3" data-sizex="2" data-sizey="2" data-zen="codes"></li>
-              <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="browsers"></li>
-              <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="devices"></li>
-              <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="os"></li>
-              <li data-row="6" data-col="5" data-sizex="6" data-sizey="2" data-zen="urls"></li>
+              <li data-row="6" data-col="5" data-sizex="2" data-sizey="2" data-zen="mime"></li>
+              <li data-row="6" data-col="7" data-sizex="2" data-sizey="2" data-zen="url_403"></li>
+              <li data-row="8" data-col="1" data-sizex="4" data-sizey="2" data-zen="url_ok"></li>
+              <li data-row="8" data-col="5" data-sizex="4" data-sizey="2" data-zen="url_error"></li>
+              <!-- AGENT -->
+              <li data-row="10" data-col="1" data-sizex="2" data-sizey="2" data-zen="devices"></li>
+              <li data-row="10" data-col="3" data-sizex="2" data-sizey="2" data-zen="os"></li>
+              <li data-row="10" data-col="5" data-sizex="2" data-sizey="2" data-zen="browsers"></li>
+              <li data-row="10" data-col="7" data-sizex="2" data-sizey="2" data-zen=""></li>
           </ul>
       </div>
 
