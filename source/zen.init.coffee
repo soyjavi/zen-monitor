@@ -24,7 +24,8 @@ $ ->
       $(document.body).removeClass "landing"
       ZEN.process.get()
       ZEN.request.get()
+
   $("header > form > button.connect").on "click", (event) ->
     event.preventDefault()
     event.stopPropagation()
-      $(document.body).addClass "landing"
+    $(document.body).addClass "landing"
