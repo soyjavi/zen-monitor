@@ -1,6 +1,13 @@
 "use strict"
 
 $ ->
+  console.log "last connection", ZEN.storage.get()
+
+  instance = ZEN.storage.get()
+  if instance
+    $("input[name=host]").val instance.host
+    $("input[name=port]").val instance.port
+    $("input[name=password]").val instance.password
 
   ZEN.proxy("POST", "http://localhost:1337/api").then (error, response) ->
     console.log "POST", error, response
@@ -21,6 +28,7 @@ $ ->
       date      : moment($("input[name=date]").val()).format("YYYYMMDD")
 
     if ZEN.instance.host and ZEN.instance.password and ZEN.instance.date
+      ZEN.storage.set ZEN.instance
       $(document.body).removeClass "landing"
       ZEN.process.get()
       ZEN.request.get()
@@ -28,4 +36,4 @@ $ ->
   $("header > form > button.connect").on "click", (event) ->
     event.preventDefault()
     event.stopPropagation()
-    $(document.body).addClass "landing"
+    $(document.body).remove "landing"
