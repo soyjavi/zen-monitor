@@ -9,9 +9,6 @@ $ ->
     $("input[name=port]").val instance.port
     $("input[name=password]").val instance.password
 
-  ZEN.proxy("POST", "http://localhost:1337/api").then (error, response) ->
-    console.log "POST", error, response
-
   $(".gridster ul").gridster
     widget_margins        : [10, 10]
     widget_base_dimensions: [140, 140]
