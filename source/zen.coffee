@@ -31,7 +31,7 @@ window.ZEN = ZEN = do ->
 
   _url = ->
     url = "#{ZEN.instance.host}"
-    url += ":#{ZEN.intance.port}" if ZEN.instance.port
+    url += ":#{ZEN.instance.port}" if ZEN.instance.port
     url += "/monitor/#{ZEN.instance.password}"
 
   _utc = (object) ->
