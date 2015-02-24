@@ -18,7 +18,7 @@ window.ZEN = ZEN = do ->
       type        : type
       data        : parameters
       dataType    : 'json'
-      headers     : authorization: "jajajaja"
+      headers     : authorization: "authorization"
       success: (response, xhr) ->
         # unless background then do __.Dialog.Loading.hide
         promise.done null, response
