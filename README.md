@@ -66,5 +66,5 @@ Ingresa los datos de tu instancia, puedes probar el funcionamiento desde local e
 
 Los datos que nos ofrece ZENmonitor los podemos exportar a distintos formatos: png, jpeg, pdf, svg:
 
-![image](https://raw.githubusercontent.com/cat2608/contacts/master/assets/img/screen-22.png)
+![image](https://github.com/cat2608/contacts/blob/master/assets/img/screen-22.svg)
 
