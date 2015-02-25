@@ -31,7 +31,7 @@ monitor:
 ...
 ```
 
-ZENserver irá almacenando dos tipos de ficheros en la carpeta monitor: *request* y *server* que son los ficheros `json` que contienen la información referente a las peticiones a la instancia y al estado de la máquina.
+ZENserver irá almacenando dos tipos de ficheros en la carpeta monitor: *request* y *server* que son los ficheros `json` que contienen la información referente a las peticiones a la instancia y el estado de la máquina. Los milisegundos que configures para `process` y `request` representan la periodicidad con la que se vuelvan los datos sobre los ficheros.
 
 ### 1.1 Instalación
 
@@ -48,11 +48,23 @@ $ npm install
 $ bower install
 ```
 
-Por último solamente queda compilar y arrancar el server que trae la ZENmonitor:
+Por último solamente queda compilar y arrancar el server que trae ZENmonitor:
 
 ```bash
 $ gulp init
 $ gulp
 ```
 
-El comando `gulp` te arranca un server en el puerto 8000, lo puedes comprobar en el log del comando. Ahora solo te queda ir al navegador y accedet a `http://localhost:8000`:
+El comando `gulp` te arranca un server en el puerto 8000, lo puedes comprobar en el log del comando. Ahora solo te queda ir al navegador y acceder a `http://localhost:8000`:
+
+![image](https://raw.githubusercontent.com/cat2608/contacts/master/assets/img/screen-20.png)
+
+Ingresa los datos de tu instancia, puedes probar el funcionamiento desde local escribiendo en el campo *IP or ADDRESS* la dirección de tu máquina: `http://127.0.0.1` y en el camppo *port* debes poner el que has configurado para tu aplicación. Para el campo *password* debes ingresar el dato que hayas configurado en *zen.yml* de ZENserver, en este ejemplo *mypassword*.
+
+
+![image](https://raw.githubusercontent.com/cat2608/contacts/master/assets/img/screen-21.png)
+
+Los datos que nos ofrece ZENmonitor los podemos exportar a distintos formatos: png, jpeg, pdf, svg:
+
+![image](https://raw.githubusercontent.com/cat2608/contacts/master/assets/img/screen-22.png)
+
