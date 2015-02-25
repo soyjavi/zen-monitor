@@ -1,26 +1,23 @@
 # ZEN-monitor
 
-Este módulo de ZEN te sirve para visualizar los datos de la auditoría que recoge [ZENserver](https://github.com/soyjavi/zen-server/tree/master/documentation/ES) cuando habilitamos en su configuración la opción **Monitor**.
+You can use this module of ZEN to visualize data from [ZENserver](https://github.com/soyjavi/zen-server) audit.
 
-En esta auditoría, ZENserver nos provee de información sobre:
+ZENserver provides information about:
 
-  - El estado de la **memoria**
-  - Las **peticiones** recibidas por nuestras instancias
-  - Los **métodos** solicitados: GET, POST, PUT, DELETE, OPTIONS,...
-  - Los **código** de respuesta tanto si son de éxito como si son de errores contemplados por el firewall y no.
-  - Los **mime-types** servidos
-  - Los tipos de **dispositivos**, **sistemas operativos** y **navegadores** que acceden a la aplicación.
-
+  - **Memory** usage
+  - **Requests** to the instance
+  - **Methods**: : GET, POST, PUT, DELETE, OPTIONS,...
+  - Response **codes**: 200, 403, 404
+  - **mime-types** serverd
+  - **Devices**, **OS**, and **browsers** used
 
 ![image](https://raw.githubusercontent.com/cat2608/contacts/master/assets/img/screen-18.png)
 
+## 1. Introduction
 
-## 1. Inicio
-
-Recordemos que para habilitar el monitor sobre nuestras instancias, en *ZENserver* debemos añadir la regla de monitoreo de la siguiente manera:
+Remember that to use ZENmonitor first we need configure at zen.yml the **monitor** rule:
 
 *zen.yml*:
-
 ```yaml
 ...
 # -- Monitor -------------------------------------------------------------------
@@ -31,40 +28,38 @@ monitor:
 ...
 ```
 
-ZENserver irá almacenando dos tipos de ficheros en la carpeta monitor: *request* y *server* que son los ficheros `json` que contienen la información referente a las peticiones a la instancia y el estado de la máquina. Los milisegundos que configures para `process` y `request` representan la periodicidad con la que se vuelvan los datos sobre los ficheros.
+ZENserver will store two types of files into monitor's folder: *request* y *server*. This files have information about request to application and status machine. With *process* and *request* attributes you are configuring when ZENserver will store this information.
 
-### 1.1 Instalación
+### 1.1 Installation
 
-Para visualizar los datos de tus instancias, primeramente, clónate el proyecto:
+To use ZENmonitor first you need clone the project:
 
 ```bash
 $ git clone https://github.com/soyjavi/zen-monitor.git
 ```
 
-E instala sus dependencias:
+Now, install all dependencies:
 
 ```bash
 $ npm install
 $ bower install
 ```
 
-Por último solamente queda compilar y arrancar el server que trae ZENmonitor:
+Finally, you just need compile and run de server:
 
 ```bash
 $ gulp init
 $ gulp
 ```
 
-El comando `gulp` te arranca un server en el puerto 8000, lo puedes comprobar en el log del comando. Ahora solo te queda ir al navegador y acceder a `http://localhost:8000`:
+### 1.2 Running ZENmonitor
+
+The `gulp` command starts a server at `http://localhost:8000`:
 
 ![image](https://raw.githubusercontent.com/cat2608/contacts/master/assets/img/screen-20.png)
 
-Ingresa los datos de tu instancia, puedes probar el funcionamiento desde local escribiendo en el campo *IP or ADDRESS* la dirección de tu máquina: `http://127.0.0.1` y en el camppo *port* debes poner el que has configurado para tu aplicación. Para el campo *password* debes ingresar el dato que hayas configurado en *zen.yml* de ZENserver, en este ejemplo *mypassword*.
-
+Now, you can type information about your instance: *URL*, *PORT* and *PASSWORD*. This password must be the same as you configured at zen.yml file.
 
 ![image](https://raw.githubusercontent.com/cat2608/contacts/master/assets/img/screen-21.png)
 
-Los datos que nos ofrece ZENmonitor los podemos exportar a distintos formatos: png, jpeg, pdf, svg:
-
-![image](https://github.com/cat2608/contacts/blob/master/assets/img/screen-22.svg)
-
+You can export all graph to png, jpeg, pdf, svg formats.
